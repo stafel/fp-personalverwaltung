@@ -12,6 +12,9 @@ import javafx.scene.control.TabPane;
 public class MainViewController implements Initializable {
 
     @FXML
+    OrtschaftController ortschaftController;
+
+    @FXML
     MenuItem miPrint;
 
     @FXML
@@ -28,6 +31,7 @@ public class MainViewController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+
     }
     
 }

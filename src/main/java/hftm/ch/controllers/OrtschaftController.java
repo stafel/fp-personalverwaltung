@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 
 public class OrtschaftController {
 
-    private static ObservableList<Ortschaft> ortschaften;
+    private ObservableList<Ortschaft> ortschaften;
 
     @FXML
     private TableView<Ortschaft> tableViewOrtschaft;
@@ -37,8 +37,8 @@ public class OrtschaftController {
     private void initialize() {
         List<Ortschaft> list = new ArrayList<>();
         ortschaften = FXCollections.observableList(list);
-
         tableViewOrtschaft.setItems(ortschaften);
+
         //tableColumnOrt.setCellValueFactory(cellData -> cellData.getValue().getOrt());
         tableColumnOrt.setCellValueFactory(cellData -> cellData.getValue().ortProperty());
         tableColumnOrt.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -62,6 +62,7 @@ public class OrtschaftController {
                 }
             }
         );
+
     }
 
     @FXML
