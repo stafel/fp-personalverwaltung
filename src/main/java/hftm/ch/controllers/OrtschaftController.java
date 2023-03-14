@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hftm.ch.models.Ortschaft;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -39,7 +40,7 @@ public class OrtschaftController {
         ortschaften = FXCollections.observableList(list);
 
         tableViewOrtschaft.setItems(ortschaften);
-        tableColumnOrt.setCellValueFactory(cellData -> cellData.getValue().ortProperty());
+        tableColumnOrt.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getOrt()));
         tableColumnOrt.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnOrt.setOnEditCommit(
             new EventHandler<TableColumn.CellEditEvent<Ortschaft,String>>() {
@@ -50,7 +51,7 @@ public class OrtschaftController {
                 }
             }
         );
-        tableColumnPlz.setCellValueFactory(cellData -> cellData.getValue().plzProperty());
+        tableColumnPlz.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getPlz()));
         tableColumnPlz.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnPlz.setOnEditCommit(
             new EventHandler<TableColumn.CellEditEvent<Ortschaft,String>>() {
@@ -65,12 +66,10 @@ public class OrtschaftController {
 
     @FXML
     private void addOrtschaft() {
-        System.out.println(textFieldOrt.getText());
-        System.out.println(textFieldPlz.getText());
-        ortschaften.add(new Ortschaft(
-            textFieldOrt.getText(),
-            textFieldPlz.getText()
-        ));
+        Ortschaft ortschaft = new Ortschaft();
+        ortschaft.setOrt(textFieldOrt.getText());
+        ortschaft.setPlz(textFieldPlz.getText());
+        ortschaften.add(ortschaft);
         textFieldOrt.clear();
         textFieldPlz.clear();
     }
