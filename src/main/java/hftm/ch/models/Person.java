@@ -1,7 +1,7 @@
 package hftm.ch.models;
 
 import java.util.List;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.io.Serializable;
 import java.io.Externalizable;

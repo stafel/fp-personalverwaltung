@@ -1,4 +1,4 @@
-package hftm.ch.controller;
+package hftm.ch.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -17,8 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.SQLException;
+import java.util.Date;
 
 public class AdresseController {
 
@@ -114,7 +113,7 @@ public class AdresseController {
         TableColumnFrom.setText(validFrom.toString());
     }
 
-    public void buttonDeleteAdressAction(ActionEvent event) throws SQLException {
+    public void buttonDeleteAdressAction(ActionEvent event) {
         TableViewAdresse.getItems().removeAll(
                 TableViewAdresse.getSelectionModel().getSelectedItems()
         );
@@ -123,7 +122,7 @@ public class AdresseController {
 
     }
 
-    public void buttonAddAdressAction(ActionEvent event) throws SQLException {
+    public void buttonAddAdressAction(ActionEvent event) {
         System.out.println(inputStrasse.getText());
         System.out.println(inputBis.getText());
         System.out.println(inputVon.getText());
