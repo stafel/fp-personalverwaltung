@@ -117,7 +117,7 @@ public class Repository implements Serializable {
     public static Person newPerson() {
         Long id = 0L;
         for (Person p: Repository.getInstance().personen) {
-            if (p.getId() > id) {
+            if (p.getId() >= id) {
                 id = p.getId() + 1L;
             }
         }
@@ -187,7 +187,7 @@ public class Repository implements Serializable {
     public static Adresse newAdresse() {
         Long id = 0L;
         for (Adresse a: Repository.getInstance().adressen) {
-            if (a.getId() > id) {
+            if (a.getId() >= id) {
                 id = a.getId() + 1L;
             }
         }
