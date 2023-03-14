@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import hftm.ch.models.Adresse;
 import hftm.ch.models.Ortschaft;
+import hftm.ch.utils.Repository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AdresseController {
@@ -128,12 +131,20 @@ public class AdresseController {
         System.out.println(inputVon.getText());
         System.out.println(inputOrtschaft.getText());
         System.out.println(inputNummer.getText());
-        Adresse.add(new Adresse(
-                inputStrasse.getText(),
-                inputBis.getText(),
-                inputVon.getText(),
-                inputNummer.getText()
-        ));
+
+        DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+        Adresse adr = Repository.newAdresse();
+        adr.setStrasse(inputStrasse.getText());
+        try {
+            adr.setValidTo(df.parse(inputBis.getText()));
+            adr.setValidFrom(df.parse(inputVon.getText()));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        adr.setNummer(inputNummer.getText());
+        Repository.addAdresse(adr);
+        
         inputStrasse.clear();
         inputBis.clear();
         inputVon.clear();
