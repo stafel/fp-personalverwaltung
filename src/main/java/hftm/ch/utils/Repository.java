@@ -40,12 +40,12 @@ public class Repository implements Serializable {
     public List<Adresse> adressen;
     public List<Ortschaft> ortschaften;
 
-    private Connection connection;
+    private transient Connection connection;
 
     private Repository() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
-            createDatabase();
+            //connection = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
+            //createDatabase();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -55,7 +55,7 @@ public class Repository implements Serializable {
     private void createDatabase() {
         try {
             Statement statement = connection.createStatement();
-            statement.execute("REATE TABLE IF NOT EXISTS personen ( " +
+            statement.execute("CREATE TABLE IF NOT EXISTS personen ( " +
                 "id integer PRIMARY KEY, " +
                 "name text NOT NULL, " +
                 "lastname text NOT NULL, " +
@@ -64,7 +64,7 @@ public class Repository implements Serializable {
             ");");
             connection.commit();
 
-            statement.execute("REATE TABLE IF NOT EXISTS adressen ( " +
+            statement.execute("CREATE TABLE IF NOT EXISTS adressen ( " +
                 "id integer PRIMARY KEY, " +
                 "strasse text NOT NULL, " +
                 "nummer text NOT NULL, " +
@@ -74,7 +74,7 @@ public class Repository implements Serializable {
             ");");
             connection.commit();
 
-            statement.execute("REATE TABLE IF NOT EXISTS ortschaft ( " +
+            statement.execute("CREATE TABLE IF NOT EXISTS ortschaft ( " +
                 "id integer PRIMARY KEY, " +
                 "plz text NOT NULL, " +
                 "ort text NOT NULL " +
@@ -104,6 +104,19 @@ public class Repository implements Serializable {
         Repository.getInstance().personen.add(person);
     }
 
+    /** new person with correct id */
+    public static Person newPerson() {
+        Long id = 0L;
+        for (Person p: Repository.getInstance().personen) {
+            if (p.getId() > id) {
+                id = p.getId() + 1L;
+            }
+        }
+        Person person = new Person();
+        person.setId(id);
+        return person;
+    }
+
     /** Ortschaft modif */
     public static List<Ortschaft> getOrtschaften() {
         return Repository.getInstance().ortschaften;
@@ -120,6 +133,19 @@ public class Repository implements Serializable {
 
     public static void addOrtschaft(Ortschaft ortschaft) {
         Repository.getInstance().ortschaften.add(ortschaft);
+    }
+
+    /** new ortschaft with correct id */
+    public static Ortschaft newOrtschaft() {
+        Long id = 0L;
+        for (Ortschaft o: Repository.getInstance().ortschaften) {
+            if (o.getId() > id) {
+                id = o.getId() + 1L;
+            }
+        }
+        Ortschaft ort = new Ortschaft();
+        ort.setId(id);
+        return ort;
     }
 
     /** Adresse modif */
@@ -140,6 +166,18 @@ public class Repository implements Serializable {
         Repository.getInstance().adressen.add(adresse);
     }
 
+    /** new adresse with correct id */
+    public static Adresse newAdresse() {
+        Long id = 0L;
+        for (Adresse a: Repository.getInstance().adressen) {
+            if (a.getId() > id) {
+                id = a.getId() + 1L;
+            }
+        }
+        Adresse adr = new Adresse();
+        adr.setId(id);
+        return adr;
+    }
 
     // Serializes the Repository to a file
     private static void toFile(String path) {
