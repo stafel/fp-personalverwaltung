@@ -7,5 +7,5 @@ module hftm.ch {
 
     opens hftm.ch;
 
-    opens hftm.ch.controller to javafx.fxml;
+    opens hftm.ch.controllers to javafx.fxml;
 }

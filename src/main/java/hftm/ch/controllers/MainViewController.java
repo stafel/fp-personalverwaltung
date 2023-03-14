@@ -1,4 +1,4 @@
-package hftm.ch.controller;
+package hftm.ch.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,8 +28,6 @@ public class MainViewController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
     
 }
