@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="AnchorPaneAdresse" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="TableViewAdresse" layoutY="38.0" prefHeight="562.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="TableColumnStrasse" minWidth="120.0" prefWidth="75.0" text="Strasse" />
+          <TableColumn fx:id="TableColumnVon" minWidth="120.0" prefWidth="75.0" text="Von" />
+            <TableColumn fx:id="TableColumnBis" minWidth="120.0" prefWidth="75.0" text="Bis" />
+            <TableColumn fx:id="TableColumnOrtschaft" minWidth="120.0" prefWidth="75.0" text="Ortschaft" />
+            <TableColumn fx:id="TableColumnNummer" minWidth="120.0" prefWidth="75.0" text="Nummer" />
+        </columns>
+      </TableView>
+      <Label fx:id="LableTitel" layoutX="225.0" layoutY="-4.0" prefHeight="37.0" prefWidth="232.0" text="Adresse der Person" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
