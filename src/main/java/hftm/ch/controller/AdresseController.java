@@ -126,6 +126,9 @@ public class AdresseController {
     public void buttonAddAdressAction(ActionEvent event) throws SQLException {
         System.out.println(inputStrasse.getText());
         System.out.println(inputBis.getText());
+        System.out.println(inputVon.getText());
+        System.out.println(inputOrtschaft.getText());
+        System.out.println(inputNummer.getText());
         Adresse.add(new Adresse(
                 inputStrasse.getText(),
                 inputBis.getText(),
