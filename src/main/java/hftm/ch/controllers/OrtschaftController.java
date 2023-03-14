@@ -1,9 +1,9 @@
 package hftm.ch.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import hftm.ch.models.Ortschaft;
+import hftm.ch.utils.Repository;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +11,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class OrtschaftController {
 
@@ -36,7 +36,7 @@ public class OrtschaftController {
 
     @FXML
     private void initialize() {
-        List<Ortschaft> list = new ArrayList<>();
+        List<Ortschaft> list = Repository.getOrtschaften();
         ortschaften = FXCollections.observableList(list);
 
         tableViewOrtschaft.setItems(ortschaften);
@@ -66,12 +66,20 @@ public class OrtschaftController {
 
     @FXML
     private void addOrtschaft() {
+        Repository.load();
+        String ort = textFieldOrt.getText();
+        String plz = textFieldPlz.getText();
         Ortschaft ortschaft = new Ortschaft();
-        ortschaft.setOrt(textFieldOrt.getText());
-        ortschaft.setPlz(textFieldPlz.getText());
+        ortschaft.setOrt(ort);
+        ortschaft.setPlz(plz);
         ortschaften.add(ortschaft);
+        Ortschaft repoOrtschaft = Repository.newOrtschaft();
+        repoOrtschaft.setOrt(ort);
+        repoOrtschaft.setPlz(plz);
+        Repository.addOrtschaft(repoOrtschaft);
         textFieldOrt.clear();
         textFieldPlz.clear();
+        Repository.save();
     }
 
     @FXML
