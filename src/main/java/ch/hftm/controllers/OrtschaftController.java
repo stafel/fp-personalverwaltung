@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -39,6 +40,7 @@ public class OrtschaftController {
 
         tableViewOrtschaft.setItems(ortschaften);
         tableColumnOrt.setCellValueFactory(cellData -> cellData.getValue().ortProperty());
+        tableColumnOrt.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnOrt.setOnEditCommit(
             new EventHandler<TableColumn.CellEditEvent<Ortschaft,String>>() {
                 @Override
@@ -49,6 +51,7 @@ public class OrtschaftController {
             }
         );
         tableColumnPlz.setCellValueFactory(cellData -> cellData.getValue().plzProperty());
+        tableColumnPlz.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnPlz.setOnEditCommit(
             new EventHandler<TableColumn.CellEditEvent<Ortschaft,String>>() {
                 @Override
