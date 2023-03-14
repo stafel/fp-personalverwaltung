@@ -1,5 +1,7 @@
 package hftm.ch.controller;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import hftm.ch.models.Adresse;
 import hftm.ch.models.Ortschaft;
 import javafx.fxml.FXML;
@@ -9,14 +11,37 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 
 public class AdresseController {
+
+    @FXML
+    private Button buttonAdd;
+
+    @FXML
+    private Button buttonDelete;
+
+    @FXML
+    private TextField inputBis;
+
+    @FXML
+    private TextField inputNummer;
+
+    @FXML
+    private TextField inputOrtschaft;
+
+    @FXML
+    private TextField inputStrasse;
+
+    @FXML
+    private TextField inputVon;
 
     @FXML
     private AnchorPane AnchorPaneAdresse;
@@ -89,17 +114,30 @@ public class AdresseController {
         TableColumnFrom.setText(validFrom.toString());
     }
 
-    public void deleteAdresse() {
+    public void buttonDeleteAdressAction(ActionEvent event) throws SQLException {
+        TableViewAdresse.getItems().removeAll(
+                TableViewAdresse.getSelectionModel().getSelectedItems()
+        );
 
-        Adresse selectedAdresse = new Adresse();
 
-
-
-    }
-
-    public void addAdresse() {
 
     }
+
+    public void buttonAddAdressAction(ActionEvent event) throws SQLException {
+        System.out.println(inputStrasse.getText());
+        System.out.println(inputBis.getText());
+        Adresse.add(new Adresse(
+                inputStrasse.getText(),
+                inputBis.getText(),
+                inputVon.getText(),
+                inputNummer.getText()
+        ));
+        inputStrasse.clear();
+        inputBis.clear();
+        inputVon.clear();
+        inputNummer.clear();
+    }
+
 }
 
 
