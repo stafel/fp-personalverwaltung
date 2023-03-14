@@ -1,5 +1,7 @@
 package hftm.ch;
 
+import hftm.ch.controller.AdresseController;
+
 /**
  * Hello world!
  *

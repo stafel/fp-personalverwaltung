@@ -1,7 +1,7 @@
 package hftm.ch.controller;
 
+import hftm.ch.models.Adresse;
 import hftm.ch.models.Ortschaft;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 
-public class PersonController {
+public class AdresseController {
 
     @FXML
     private AnchorPane AnchorPaneAdresse;
@@ -43,9 +42,9 @@ public class PersonController {
     @FXML
     private TableColumn<?, ?> TableColumnFrom;
 
-    private StringProperty strasse;
+    private String strasse;
 
-    private StringProperty nummer;
+    private Integer nummer;
 
     private Date validFrom;
 
@@ -53,27 +52,53 @@ public class PersonController {
 
     private Ortschaft ortschaft;
 
-    public PersonController() throws IOException {
+    private Adresse adresse;
+
+    public AdresseController() throws IOException {
     }
-    String path = "AdressePersonView.fxml";
 
-    URL location = ClassLoader.getSystemClassLoader().getResource(path);
 
-    FXMLLoader fxmlLoader = new FXMLLoader(location);
-    Parent root = fxmlLoader.load();
-    Stage stage = new Stage();
-    Scene scene = new Scene(root, 600, 600);
+    public void Adresse(String strasse, Integer nummer, Date validFrom, Date validTo, Ortschaft ortschaft) {
+        this.strasse = strasse;
+        this.nummer = nummer;
+        this.validFrom = validFrom;
+        this.validTo = validTo;
+        this.ortschaft = ortschaft;
+    }
 
-    public void initialized() {
+    public void Adresse() {
+    }
+
+    public void initialized() throws IOException {
         setAdressView(strasse, nummer, validFrom, validTo, ortschaft);
+
+        String path = "AdressPersonView.fxml";
+        URL location = ClassLoader.getSystemClassLoader().getResource(path);
+        FXMLLoader fxmlLoader = new FXMLLoader(location);
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root, 600, 600);
+        stage.show();
     }
 
-    public void setAdressView(StringProperty strasse, StringProperty nummer, Date validFrom, Date validTo, Ortschaft ortschaft) {
+    public void setAdressView(String strasse, Integer nummer, Date validFrom, Date validTo, Ortschaft ortschaft) {
         TableColumnOrtschaft.setText(ortschaft.toString());
         TableColumnStrasse.setText(ortschaft.toString());
         TableColumnNummer.setText(nummer.toString());
         TableColumnTo.setText(validTo.toString());
         TableColumnFrom.setText(validFrom.toString());
+    }
+
+    public void deleteAdresse() {
+
+        Adresse selectedAdresse = new Adresse();
+
+
+
+    }
+
+    public void addAdresse() {
+
     }
 }
 
