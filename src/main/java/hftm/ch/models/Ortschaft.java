@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import javafx.beans.property.StringProperty;
 
 public class Ortschaft implements Serializable {
     static final long serialVersionUID = 42L;

@@ -17,8 +17,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javafx.beans.property.StringProperty;
-
 public class Adresse implements Serializable {
     static final long serialVersionUID = 42L;
 
