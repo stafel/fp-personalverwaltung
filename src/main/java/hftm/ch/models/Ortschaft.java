@@ -1,20 +1,9 @@
 package hftm.ch.models;
 
-import java.sql.Date;
-import java.util.List;
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Ortschaft implements Serializable {
     static final long serialVersionUID = 42L;
@@ -24,8 +13,25 @@ public class Ortschaft implements Serializable {
     private String plz;
     private String ort;
 
+    transient private StringProperty plzProperty = new SimpleStringProperty();
+    transient private StringProperty ortProperty = new SimpleStringProperty();
+    
+    public StringProperty plzProperty() {
+        return plzProperty;
+    }
+
+
+    public StringProperty ortProperty() {
+        return ortProperty;
+    }
+
     public Ortschaft() {
 
+    }
+
+    public Ortschaft(String ort, String plz) {
+        this.plz = plz;
+        this.ort = ort;
     }
 
     public Long getId() {
@@ -37,18 +43,22 @@ public class Ortschaft implements Serializable {
     }
 
     public String getPlz() {
-        return plz;
+        return plzProperty.get();
     }
 
     public void setPlz(String plz) {
+        this.plzProperty.set(plz);
+
         this.plz = plz;
     }
 
     public String getOrt() {
-        return ort;
+        return ortProperty.get();
     }
 
     public void setOrt(String ort) {
+        this.ortProperty.set(ort);
+
         this.ort = ort;
     }
 }
