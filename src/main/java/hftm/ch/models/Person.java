@@ -18,8 +18,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javafx.beans.property.StringProperty;
-
 public class Person implements Serializable{
     static final long serialVersionUID = 42L;
 
@@ -41,28 +39,28 @@ public class Person implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    public StringProperty getLastname() {
+    public String getLastname() {
         return lastname;
     }
-    public void setLastname(StringProperty lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    public StringProperty getName() {
+    public String getName() {
         return name;
     }
-    public void setName(StringProperty name) {
+    public void setName(String name) {
         this.name = name;
     }
-    public StringProperty getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
-    public void setBirthday(StringProperty birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-    public StringProperty getHomeplace() {
+    public String getHomeplace() {
         return homeplace;
     }
-    public void setHomeplace(StringProperty homeplace) {
+    public void setHomeplace(String homeplace) {
         this.homeplace = homeplace;
     }
     public List<Adresse> getAdressen() {
