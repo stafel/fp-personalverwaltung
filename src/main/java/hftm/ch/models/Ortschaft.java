@@ -18,14 +18,12 @@ import org.hibernate.annotations.GenericGenerator;
 import javafx.beans.property.StringProperty;
 
 public class Ortschaft implements Serializable {
-    @Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	@Column(name = "ORDID")
+    static final long serialVersionUID = 42L;
+
 	private Long id;
 
-    private StringProperty plz;
-    private StringProperty ort;
+    private String plz;
+    private String ort;
 
     public Ortschaft() {
 
@@ -39,21 +37,19 @@ public class Ortschaft implements Serializable {
         this.id = id;
     }
 
-    public StringProperty getPlz() {
+    public String getPlz() {
         return plz;
     }
 
-    public void setPlz(StringProperty plz) {
+    public void setPlz(String plz) {
         this.plz = plz;
     }
 
-    public StringProperty getOrt() {
+    public String getOrt() {
         return ort;
     }
 
-    public void setOrt(StringProperty ort) {
+    public void setOrt(String ort) {
         this.ort = ort;
     }
-
-    
 }

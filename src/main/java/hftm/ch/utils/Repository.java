@@ -23,17 +23,18 @@ import hftm.ch.models.Person;
 
 /** singleton repository to interact with database */
 public class Repository implements Serializable {
+    static final long serialVersionUID = 42L;
 
     private static Repository instance; 
     public static Repository getInstance() {
-        if(instance == null) {
-            instance = new Repository();
+        if(Repository.instance == null) {
+            Repository.instance = new Repository();
         }
-        return instance;
+        return Repository.instance;
     }
 
     public static void overrideInstance(Repository repository) {
-        instance = repository;
+        Repository.instance = repository;
     }
 
     public List<Person> personen;
@@ -43,6 +44,10 @@ public class Repository implements Serializable {
     private transient Connection connection;
 
     private Repository() {
+        personen = new ArrayList<>();
+        adressen = new ArrayList<>();
+        ortschaften = new ArrayList<>();
+
         try {
             //connection = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
             //createDatabase();
@@ -104,6 +109,10 @@ public class Repository implements Serializable {
         Repository.getInstance().personen.add(person);
     }
 
+    public static void removePerson(Person person) {
+        Repository.getInstance().personen.remove(person);
+    }
+
     /** new person with correct id */
     public static Person newPerson() {
         Long id = 0L;
@@ -135,11 +144,15 @@ public class Repository implements Serializable {
         Repository.getInstance().ortschaften.add(ortschaft);
     }
 
+    public static void removeOrtschaft(Ortschaft ortschaft) {
+        Repository.getInstance().ortschaften.remove(ortschaft);
+    }
+
     /** new ortschaft with correct id */
     public static Ortschaft newOrtschaft() {
         Long id = 0L;
         for (Ortschaft o: Repository.getInstance().ortschaften) {
-            if (o.getId() > id) {
+            if (o.getId() >= id) {
                 id = o.getId() + 1L;
             }
         }
@@ -164,6 +177,10 @@ public class Repository implements Serializable {
 
     public static void addAdresse(Adresse adresse) {
         Repository.getInstance().adressen.add(adresse);
+    }
+
+    public static void removeAdresse(Adresse adresse) {
+        Repository.getInstance().adressen.remove(adresse);
     }
 
     /** new adresse with correct id */

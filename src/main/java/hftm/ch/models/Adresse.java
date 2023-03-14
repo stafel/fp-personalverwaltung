@@ -3,6 +3,7 @@ package hftm.ch.models;
 import java.sql.Date;
 import java.util.List;
 import java.io.Serializable;
+import java.io.Externalizable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,14 +20,12 @@ import org.hibernate.annotations.GenericGenerator;
 import javafx.beans.property.StringProperty;
 
 public class Adresse implements Serializable {
-    @Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	@Column(name = "ADRID")
-	private Long id;
+    static final long serialVersionUID = 42L;
 
-    StringProperty strasse;
-    StringProperty nummer;
+	private Long id = 1L;
+
+    String strasse;
+    String nummer;
     Date validFrom;
     Date validTo;
     Ortschaft ortschaft;
@@ -43,19 +42,19 @@ public class Adresse implements Serializable {
         this.id = id;
     }
 
-    public StringProperty getStrasse() {
+    public String getStrasse() {
         return strasse;
     }
 
-    public void setStrasse(StringProperty strasse) {
+    public void setStrasse(String strasse) {
         this.strasse = strasse;
     }
 
-    public StringProperty getNummer() {
+    public String getNummer() {
         return nummer;
     }
 
-    public void setNummer(StringProperty nummer) {
+    public void setNummer(String nummer) {
         this.nummer = nummer;
     }
 

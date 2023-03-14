@@ -4,6 +4,7 @@ import java.util.List;
 import java.sql.Date;
 import java.util.List;
 import java.io.Serializable;
+import java.io.Externalizable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,17 +20,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javafx.beans.property.StringProperty;
 
-public class Person implements Serializable {
-    @Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	@Column(name = "PERSID")
+public class Person implements Serializable{
+    static final long serialVersionUID = 42L;
+
 	private Long id;
     
-    StringProperty lastname;
-    StringProperty name;
-    StringProperty birthday;
-    StringProperty homeplace;
+    String lastname;
+    String name;
+    String birthday;
+    String homeplace;
     List<Adresse> adressen;
 
     public Person() {
