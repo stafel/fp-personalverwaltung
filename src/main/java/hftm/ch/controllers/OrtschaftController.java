@@ -39,6 +39,7 @@ public class OrtschaftController {
         ortschaften = FXCollections.observableList(list);
 
         tableViewOrtschaft.setItems(ortschaften);
+        //tableColumnOrt.setCellValueFactory(cellData -> cellData.getValue().getOrt());
         tableColumnOrt.setCellValueFactory(cellData -> cellData.getValue().ortProperty());
         tableColumnOrt.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnOrt.setOnEditCommit(

@@ -4,6 +4,10 @@ module hftm.ch {
     requires javafx.base;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires java.xml;
+    requires java.sql;
+    requires java.persistence;
+    requires org.hibernate.orm.core;
 
     opens hftm.ch;
 
