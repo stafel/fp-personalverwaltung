@@ -127,5 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+<<<<<<< HEAD
 .idea/
 .DS_Store
+=======
+
+.vscode/
+>>>>>>> main
