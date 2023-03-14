@@ -1,9 +1,9 @@
-package ch.hftm.controllers;
+package hftm.ch.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.hftm.models.Ortschaft;
+import hftm.ch.models.Ortschaft;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;

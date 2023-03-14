@@ -1,4 +1,4 @@
-package ch.hftm.models;
+package hftm.ch.models;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
