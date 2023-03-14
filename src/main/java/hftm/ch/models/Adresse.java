@@ -1,13 +1,87 @@
 package hftm.ch.models;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import javafx.beans.property.StringProperty;
 
-public class Adresse {
+public class Adresse implements Serializable {
+    @Id
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
+	@Column(name = "ADRID")
+	private Long id;
+
     StringProperty strasse;
     StringProperty nummer;
     Date validFrom;
     Date validTo;
     Ortschaft ortschaft;
+
+    public Adresse() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public StringProperty getStrasse() {
+        return strasse;
+    }
+
+    public void setStrasse(StringProperty strasse) {
+        this.strasse = strasse;
+    }
+
+    public StringProperty getNummer() {
+        return nummer;
+    }
+
+    public void setNummer(StringProperty nummer) {
+        this.nummer = nummer;
+    }
+
+    public Date getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(Date validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    public Date getValidTo() {
+        return validTo;
+    }
+
+    public void setValidTo(Date validTo) {
+        this.validTo = validTo;
+    }
+
+    public Ortschaft getOrtschaft() {
+        return ortschaft;
+    }
+
+    public void setOrtschaft(Ortschaft ortschaft) {
+        this.ortschaft = ortschaft;
+    }
+
+    
 }
